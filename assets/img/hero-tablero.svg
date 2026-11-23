@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 400" font-family="Inter, Arial, sans-serif">
+  <rect width="560" height="400" rx="16" fill="#fff"/>
+  <rect width="560" height="44" rx="16" fill="#0B2A4A"/><rect y="28" width="560" height="16" fill="#0B2A4A"/>
+  <rect x="18" y="12" width="20" height="20" rx="5" fill="#0A5C99"/><path d="M25 16h6v5h5v6h-5v5h-6v-5h-5v-6h5z" fill="#fff"/>
+  <text x="46" y="28" fill="#fff" font-size="15" font-weight="700">EpiNexo · Tablero</text>
+  <g font-size="11" fill="#374151">
+    <rect x="18" y="60" width="122" height="70" rx="10" fill="#F9FAFB" stroke="#D1D5DB"/><text x="30" y="80">Casos</text><text x="30" y="110" font-size="24" font-weight="700" fill="#0B2A4A">1 240</text>
+    <rect x="150" y="60" width="122" height="70" rx="10" fill="#F9FAFB" stroke="#D1D5DB"/><text x="162" y="80">Incidencia</text><text x="162" y="110" font-size="24" font-weight="700" fill="#0B2A4A">387.5</text>
+    <rect x="282" y="60" width="122" height="70" rx="10" fill="#F9FAFB" stroke="#D1D5DB"/><text x="294" y="80">Defunciones</text><text x="294" y="110" font-size="24" font-weight="700" fill="#0B2A4A">9</text>
+    <rect x="414" y="60" width="128" height="70" rx="10" fill="#FEE4E2" stroke="#B42318"/><text x="426" y="80" fill="#B42318" font-weight="700">Alerta</text><text x="426" y="104" fill="#B42318" font-weight="700">+76 % Ribera N.</text>
+  </g>
+  <rect x="18" y="146" width="250" height="236" rx="10" fill="#EAF4FB" stroke="#D1D5DB"/>
+  <g stroke="#fff" stroke-width="3">
+    <polygon points="34,170 120,164 130,210 90,226 38,216" fill="#B42318"/>
+    <polygon points="120,164 190,168 186,214 130,210" fill="#B42318"/>
+    <polygon points="38,216 90,226 98,268 44,272" fill="#C2410C"/>
+    <polygon points="90,226 130,210 186,214 178,262 98,268" fill="#C2410C"/>
+    <polygon points="98,268 178,262 170,312 104,312" fill="#F5B700"/>
+    <polygon points="44,272 98,268 104,312 50,322" fill="#F5B700"/>
+    <polygon points="186,214 252,210 256,280 178,262" fill="#1B7F3B"/>
+    <polygon points="178,262 256,280 248,360 170,312" fill="#1B7F3B"/>
+  </g>
+  <text x="30" y="370" font-size="11" fill="#374151">Mapa de riesgo por zona</text>
+  <rect x="282" y="146" width="260" height="236" rx="10" fill="#fff" stroke="#D1D5DB"/>
+  <text x="296" y="168" font-size="11" fill="#374151">Tendencia semanal</text>
+  <g stroke="#F3F4F6"><line x1="300" x2="528" y1="200" y2="200"/><line x1="300" x2="528" y1="250" y2="250"/><line x1="300" x2="528" y1="300" y2="300"/><line x1="300" x2="528" y1="350" y2="350"/></g>
+  <polyline points="300,340 320,336 340,332 360,330 380,322 400,316 420,306 440,296 460,282 480,268" fill="none" stroke="#0A5C99" stroke-width="4"/>
+  <polygon points="480,268 500,240 520,214 520,260 500,272 480,268" fill="#0F766E" fill-opacity=".18"/>
+  <polyline points="480,268 500,254 520,236" fill="none" stroke="#0F766E" stroke-width="4" stroke-dasharray="8 6"/>
+  <circle cx="480" cy="268" r="6" fill="#0A5C99" stroke="#fff" stroke-width="2"/>
+</svg>
