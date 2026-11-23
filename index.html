@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EpiNexo · Información del dengue clara y conectada</title>
+  <meta name="description" content="EpiNexo integra datos de vigilancia epidemiológica, capacidad hospitalaria y trabajo de campo para responder al dengue a tiempo.">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="ic-layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1" />
+  <rect width="7" height="5" x="14" y="3" rx="1" />
+  <rect width="7" height="9" x="14" y="12" rx="1" />
+  <rect width="7" height="5" x="3" y="16" rx="1" /></symbol>
+<symbol id="ic-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
+  <path d="M15 5.764v15" />
+  <path d="M9 3.236v15" /></symbol>
+<symbol id="ic-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+  <circle cx="12" cy="10" r="3" /></symbol>
+<symbol id="ic-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6" />
+  <path d="m22 7-8.5 8.5-5-5L2 17" /></symbol>
+<symbol id="ic-triangle-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" /></symbol>
+<symbol id="ic-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0" />
+  <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /></symbol>
+<symbol id="ic-bed-double" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8" />
+  <path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
+  <path d="M12 4v6" />
+  <path d="M2 18h20" /></symbol>
+<symbol id="ic-pill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
+  <path d="m8.5 8.5 7 7" /></symbol>
+<symbol id="ic-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <circle cx="9" cy="7" r="4" /></symbol>
+<symbol id="ic-clipboard-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+  <path d="m9 14 2 2 4-4" /></symbol>
+<symbol id="ic-message-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></symbol>
+<symbol id="ic-file-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+  <path d="M12 18v-6" />
+  <path d="m9 15 3 3 3-3" /></symbol>
+<symbol id="ic-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z" /></symbol>
+<symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v3" />
+  <path d="M16 2v3" />
+  <rect x="3" y="3" width="18" height="18" rx="2" />
+  <path d="M3 9h18" /></symbol>
+<symbol id="ic-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3" />
+  <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+  <path d="M3 12A9 3 0 0 0 21 12" /></symbol>
+<symbol id="ic-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" /></symbol>
+<symbol id="ic-wifi-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01" />
+  <path d="M8.5 16.429a5 5 0 0 1 7 0" />
+  <path d="M5 12.859a10 10 0 0 1 5.17-2.69" />
+  <path d="M19 12.859a10 10 0 0 0-2.007-1.523" />
+  <path d="M2 8.82a15 15 0 0 1 4.177-2.643" />
+  <path d="M22 8.82a15 15 0 0 0-11.288-3.764" />
+  <path d="m2 2 20 20" /></symbol>
+<symbol id="ic-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01" />
+  <path d="M2 8.82a15 15 0 0 1 20 0" />
+  <path d="M5 12.859a10 10 0 0 1 14 0" />
+  <path d="M8.5 16.429a5 5 0 0 1 7 0" /></symbol>
+<symbol id="ic-refresh-cw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+  <path d="M21 3v5h-5" />
+  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+  <path d="M8 16H3v5" /></symbol>
+<symbol id="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" /></symbol>
+<symbol id="ic-circle-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <path d="m16 9-5.5 5.5L8 12" /></symbol>
+<symbol id="ic-circle-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <line x1="12" x2="12" y1="8" y2="12" />
+  <line x1="12" x2="12.01" y1="16" y2="16" /></symbol>
+<symbol id="ic-octagon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16h.01" />
+  <path d="M12 8v4" />
+  <path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z" /></symbol>
+<symbol id="ic-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <path d="M12 16v-4" />
+  <path d="M12 8h.01" /></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" /></symbol>
+<symbol id="ic-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+  <path d="m21.854 2.147-10.94 10.939" /></symbol>
+<symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" />
+  <path d="m6 6 12 12" /></symbol>
+<symbol id="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16" />
+  <path d="M4 12h16" />
+  <path d="M4 19h16" /></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></symbol>
+<symbol id="ic-hospital" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v4" />
+  <path d="M14 21v-3a2 2 0 0 0-4 0v3" />
+  <path d="M14 9h-4" />
+  <path d="M18 11h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2" />
+  <path d="M18 21V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16" /></symbol>
+<symbol id="ic-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" /></symbol>
+<symbol id="ic-navigation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11" /></symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <path d="M12 6v6l4 2" /></symbol>
+<symbol id="ic-house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+  <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></symbol>
+<symbol id="ic-user-round" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5" />
+  <path d="M20 21a8 8 0 0 0-16 0" /></symbol>
+<symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></symbol>
+<symbol id="ic-rotate-ccw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+  <path d="M3 3v5h5" /></symbol>
+<symbol id="ic-chart-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="m19 9-5 5-4-4-3 3" /></symbol>
+<symbol id="ic-clipboard-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+  <path d="M12 11h4" />
+  <path d="M12 16h4" />
+  <path d="M8 11h.01" />
+  <path d="M8 16h.01" /></symbol>
+<symbol id="ic-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3" />
+  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+  <path d="m7 10 5 5 5-5" /></symbol>
+<symbol id="ic-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></symbol>
+<symbol id="ic-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+  <path d="M20 2v4" />
+  <path d="M22 4h-4" />
+  <circle cx="4" cy="20" r="2" /></symbol>
+<symbol id="ic-building-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12h4" />
+  <path d="M10 8h4" />
+  <path d="M14 21v-3a2 2 0 0 0-4 0v3" />
+  <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" />
+  <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></symbol>
+<symbol id="ic-package" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
+  <path d="M12 22V12" />
+  <polyline points="3.29 7 12 12 20.71 7" />
+  <path d="m7.5 4.27 9 5.15" /></symbol>
+</svg>
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#inicio" aria-label="EpiNexo, ir al inicio">
+      <img src="assets/img/logo.svg" alt="" width="36" height="36">
+      <span>EpiNexo</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <svg class="icon" aria-hidden="true"><use href="#ic-menu"></use></svg>
+      <span>Menú</span>
+    </button>
+    <nav aria-label="Navegación principal">
+      <ul id="menu-principal" class="nav-list">
+        <li><a href="#problema">Problema</a></li>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#perfiles">Perfiles</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a class="btn btn-primary btn-sm" href="#contacto">Solicitar información</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido" tabindex="-1">
+
+  <!-- HU-47 · Propuesta de valor -->
+  <section id="inicio" class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Salud digital para la respuesta al dengue</p>
+        <h1 id="hero-title">Información del dengue clara y conectada para decidir a tiempo</h1>
+        <p class="lead">EpiNexo reúne en un solo lugar los datos de vigilancia epidemiológica, la capacidad hospitalaria y el trabajo de las brigadas de control vectorial, para que analistas, coordinadores y brigadas de las DIRESA identifiquen zonas críticas y actúen antes de que el brote crezca.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contacto" id="cta-solicitar">
+            <svg class="icon" aria-hidden="true"><use href="#ic-send"></use></svg>Solicitar información</a>
+          <a class="btn btn-secondary" href="#demo">
+            <svg class="icon" aria-hidden="true"><use href="#ic-layout-dashboard"></use></svg>Explorar la demo</a>
+        </div>
+        <ul class="hero-facts" aria-label="Qué integra EpiNexo">
+          <li><svg class="icon" aria-hidden="true"><use href="#ic-database"></use></svg>Fuentes MINSA, EsSalud y privadas</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#ic-map"></use></svg>Mapa de riesgo por zona</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#ic-wifi-off"></use></svg>App de campo sin conexión</li>
+        </ul>
+      </div>
+      <figure class="hero-figure">
+        <img src="assets/img/hero-tablero.svg" width="560" height="400"
+             alt="Ilustración del tablero de EpiNexo: tarjetas de casos e incidencia, un mapa con zonas en riesgo alto y crítico y un gráfico de tendencia semanal en aumento.">
+      </figure>
+    </div>
+  </section>
+
+  <!-- Problema -->
+  <section id="problema" class="section" aria-labelledby="problema-title">
+    <div class="container">
+      <p class="eyebrow">El problema</p>
+      <h2 id="problema-title">Durante una epidemia, los datos llegan tarde y por partes</h2>
+      <p class="section-lead">En 2024 el CDC Perú reportó <strong>273 847 casos de dengue</strong> hasta la semana epidemiológica 46, un 10,1 % más que el año anterior. En nuestras entrevistas con personal de epidemiología, gestión y control vectorial encontramos tres barreras que retrasan la respuesta:</p>
+      <div class="cards-3">
+        <article class="card problem-card">
+          <svg class="icon icon-lg" aria-hidden="true"><use href="#ic-database"></use></svg>
+          <h3>Información dispersa</h3>
+          <p>Los reportes llegan en Excel, PDF y grupos de WhatsApp; consolidarlos consume la mayor parte del tiempo del equipo de gestión.</p>
+        </article>
+        <article class="card problem-card">
+          <svg class="icon icon-lg" aria-hidden="true"><use href="#ic-shield-check"></use></svg>
+          <h3>Validación manual</h3>
+          <p>Los datos incompletos o duplicados entre establecimientos se revisan uno por uno antes de poder analizarlos.</p>
+        </article>
+        <article class="card problem-card">
+          <svg class="icon icon-lg" aria-hidden="true"><use href="#ic-clipboard-list"></use></svg>
+          <h3>Registro en papel en campo</h3>
+          <p>Las brigadas anotan en hojas que se pierden o se digitan dos veces, y no saben si su reporte llegó.</p>
+        </article>
+      </div>
+      <p class="source-note">Fuente de la cifra: CDC Perú – MINSA, alerta epidemiológica por incremento de casos de dengue (2024).</p>
+    </div>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section id="como-funciona" class="section section-alt" aria-labelledby="como-title">
+    <div class="container">
+      <p class="eyebrow">Cómo funciona</p>
+      <h2 id="como-title">Integrar, priorizar y actuar en un mismo flujo</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Integrar</h3>
+          <p>Consolida las fuentes de vigilancia e indica la fecha y la calidad de cada dato.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>Priorizar</h3>
+          <p>Muestra el riesgo por zona, alertas de aumento, estimaciones y la capacidad disponible.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>Actuar</h3>
+          <p>Asigna brigadas e insumos y sigue cada intervención, incluso sin señal en campo.</p>
+        </li>
+      </ol>
+      <figure class="wide-figure">
+        <img src="assets/img/app-campo.svg" width="880" height="300"
+             alt="Ilustración del flujo: el tablero del coordinador envía una alerta urgente a la app de la brigada, que registra inspecciones sin conexión y las sincroniza al recuperar la señal.">
+      </figure>
+    </div>
+  </section>
+
+  <!-- HU-05 · Perfiles -->
+  <section id="perfiles" class="section" aria-labelledby="perfiles-title">
+    <div class="container">
+      <p class="eyebrow">¿Para quién es?</p>
+      <h2 id="perfiles-title">Elige un perfil y conoce sus funciones</h2>
+      <fieldset class="profile-picker">
+        <legend class="sr-only">Perfil de usuario</legend>
+        <label class="profile-option">
+          <input type="radio" name="perfil" value="analista" checked>
+          <span class="profile-card"><svg class="icon icon-lg" aria-hidden="true"><use href="#ic-chart-line"></use></svg>
+            <span class="profile-name">Analista epidemiológico</span>
+            <span class="profile-check" aria-hidden="true"><svg class="icon"><use href="#ic-check"></use></svg>Seleccionado</span></span>
+        </label>
+        <label class="profile-option">
+          <input type="radio" name="perfil" value="coordinador">
+          <span class="profile-card"><svg class="icon icon-lg" aria-hidden="true"><use href="#ic-building-2"></use></svg>
+            <span class="profile-name">Coordinador de la respuesta</span>
+            <span class="profile-check" aria-hidden="true"><svg class="icon"><use href="#ic-check"></use></svg>Seleccionado</span></span>
+        </label>
+        <label class="profile-option">
+          <input type="radio" name="perfil" value="brigada">
+          <span class="profile-card"><svg class="icon icon-lg" aria-hidden="true"><use href="#ic-users"></use></svg>
+            <span class="profile-name">Brigada de campo</span>
+            <span class="profile-check" aria-hidden="true"><svg class="icon"><use href="#ic-check"></use></svg>Seleccionado</span></span>
+        </label>
+      </fieldset>
+      <div id="profile-panel" class="profile-panel card" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" class="section section-alt" aria-labelledby="demo-title">
+    <div class="container">
+      <p class="eyebrow">Demo interactiva</p>
+      <h2 id="demo-title">Prueba EpiNexo con datos de demostración</h2>
+      <div class="demo-note" role="note">
+        <svg class="icon" aria-hidden="true"><use href="#ic-info"></use></svg>
+        <p>Región de demostración <strong>Valle Claro</strong> · datos ficticios · última actualización <strong>07/10/2026, 08:30</strong>. Lo que hagas aquí se guarda solo en este navegador.</p>
+        <button type="button" class="btn btn-text" id="reset-demo">
+          <svg class="icon" aria-hidden="true"><use href="#ic-rotate-ccw"></use></svg>Reiniciar demo</button>
+      </div>
+
+      <!-- Filtros globales HU-08, HU-09 -->
+      <form class="filters card" id="filters" aria-labelledby="filters-title" novalidate>
+        <h3 id="filters-title" class="filters-title"><svg class="icon" aria-hidden="true"><use href="#ic-filter"></use></svg>Filtros</h3>
+        <div class="filters-grid">
+          <div class="field">
+            <label for="f-province">Provincia</label>
+            <select id="f-province" name="province"></select>
+          </div>
+          <div class="field">
+            <label for="f-district">Distrito</label>
+            <select id="f-district" name="district"></select>
+          </div>
+          <div class="field">
+            <label for="f-from">Desde (semana epidemiológica)</label>
+            <select id="f-from" name="from" aria-describedby="period-error"></select>
+          </div>
+          <div class="field">
+            <label for="f-to">Hasta (semana epidemiológica)</label>
+            <select id="f-to" name="to" aria-describedby="period-error"></select>
+          </div>
+          <div class="field field-action">
+            <button type="submit" class="btn btn-primary" id="apply-period">
+              <svg class="icon" aria-hidden="true"><use href="#ic-calendar"></use></svg>Aplicar periodo</button>
+          </div>
+        </div>
+        <p id="period-error" class="field-error" role="alert"></p>
+        <div class="active-filters" aria-live="polite">
+          <span class="active-label">Filtros activos:</span>
+          <ul id="filter-chips" class="chips"></ul>
+          <button type="button" class="btn btn-text" id="clear-filters">Limpiar filtros</button>
+        </div>
+      </form>
+
+      <!-- Pestañas de rol -->
+      <div class="role-tabs" role="tablist" aria-label="Vistas de la demo por perfil">
+        <button role="tab" id="tab-analista" aria-controls="panel-analista" aria-selected="true">
+          <svg class="icon" aria-hidden="true"><use href="#ic-chart-line"></use></svg>Analista</button>
+        <button role="tab" id="tab-coordinador" aria-controls="panel-coordinador" aria-selected="false" tabindex="-1">
+          <svg class="icon" aria-hidden="true"><use href="#ic-building-2"></use></svg>Coordinador
+          <span class="badge" id="incident-badge-tab" hidden></span></button>
+        <button role="tab" id="tab-brigada" aria-controls="panel-brigada" aria-selected="false" tabindex="-1">
+          <svg class="icon" aria-hidden="true"><use href="#ic-users"></use></svg>Brigada de campo</button>
+      </div>
+
+      <!-- ================= PANEL ANALISTA ================= -->
+      <div role="tabpanel" id="panel-analista" aria-labelledby="tab-analista" class="tabpanel">
+        <h3 class="panel-title">Tablero epidemiológico <span class="period-label" id="period-label"></span></h3>
+
+        <div class="kpi-grid" id="kpis" aria-live="polite"></div>
+
+        <div class="grid-2">
+          <section class="card" aria-labelledby="map-title">
+            <div class="card-head">
+              <h4 id="map-title"><svg class="icon" aria-hidden="true"><use href="#ic-map"></use></svg>Mapa de riesgo por zona</h4>
+              <p class="muted">Incidencia de las últimas 4 semanas del periodo (por 100 000 hab.). Selecciona una zona para ver su ficha.</p>
+            </div>
+            <div class="map-wrap">
+              <svg id="risk-map" viewBox="0 0 640 400" role="group" aria-label="Mapa de riesgo de la región Valle Claro"></svg>
+              <div id="map-tooltip" class="map-tooltip" role="status" aria-live="polite">Pasa el cursor, toca o enfoca una zona para ver su resumen.</div>
+            </div>
+            <ul class="legend" id="map-legend" aria-label="Leyenda de niveles de riesgo"></ul>
+            <details class="data-table-toggle">
+              <summary>Ver zonas en lista</summary>
+              <ul class="zone-list" id="zone-list"></ul>
+            </details>
+          </section>
+
+          <section class="card" aria-labelledby="alerts-title">
+            <div class="card-head">
+              <h4 id="alerts-title"><svg class="icon" aria-hidden="true"><use href="#ic-triangle-alert"></use></svg>Alertas de aumento de casos</h4>
+              <p class="muted">Se generan cuando la última semana supera en 30 % o más el promedio de las 4 anteriores (mínimo 10 casos).</p>
+            </div>
+            <ul class="alert-list" id="trend-alerts"></ul>
+          </section>
+        </div>
+
+        <section class="card" aria-labelledby="trend-title">
+          <div class="card-head card-head-row">
+            <div>
+              <h4 id="trend-title"><svg class="icon" aria-hidden="true"><use href="#ic-trending-up"></use></svg>Tendencia semanal de casos</h4>
+              <p class="muted">Enfoca o selecciona un punto para ver su valor exacto.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-forecast" role="switch">
+              <span class="switch-ui" aria-hidden="true"></span>
+              <span>Mostrar estimación 4 semanas</span>
+            </label>
+          </div>
+          <div class="chart-wrap">
+            <svg id="trend-chart" viewBox="0 0 900 320" role="group" aria-labelledby="trend-title"></svg>
+          </div>
+          <p id="chart-detail" class="chart-detail" role="status" aria-live="polite">Selecciona un punto del gráfico.</p>
+          <div id="forecast-legend" class="forecast-legend" hidden></div>
+          <details class="data-table-toggle">
+            <summary>Ver datos en tabla</summary>
+            <div class="table-scroll"><table class="data-table" id="trend-table"><caption class="sr-only">Casos por semana epidemiológica</caption></table></div>
+          </details>
+        </section>
+
+        <div class="grid-2">
+          <section class="card" aria-labelledby="sev-title">
+            <div class="card-head">
+              <h4 id="sev-title"><svg class="icon" aria-hidden="true"><use href="#ic-activity"></use></svg>Gravedad de los casos</h4>
+              <p class="muted">Clasificación clínica de los casos del periodo y territorio filtrados.</p>
+            </div>
+            <ul class="severity" id="severity"></ul>
+          </section>
+
+          <section class="card" aria-labelledby="src-title">
+            <div class="card-head card-head-row">
+              <div>
+                <h4 id="src-title"><svg class="icon" aria-hidden="true"><use href="#ic-database"></use></svg>Fuentes y calidad de los datos</h4>
+                <p class="muted">Procedencia, fecha de actualización y estado de cada fuente.</p>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="export-csv">
+                <svg class="icon" aria-hidden="true"><use href="#ic-download"></use></svg>Descargar CSV</button>
+            </div>
+            <ul class="sources" id="sources"></ul>
+          </section>
+        </div>
+      </div>
+
+      <!-- ================= PANEL COORDINADOR ================= -->
+      <div role="tabpanel" id="panel-coordinador" aria-labelledby="tab-coordinador" class="tabpanel" hidden>
+        <div class="panel-title-row">
+          <h3 class="panel-title">Gestión de la respuesta</h3>
+          <button type="button" class="btn btn-secondary notif-btn" id="open-incidents" aria-controls="incidents-panel" aria-expanded="false">
+            <svg class="icon" aria-hidden="true"><use href="#ic-bell"></use></svg>Incidencias de campo
+            <span class="badge" id="incident-badge">0</span><span class="sr-only"> sin atender</span></button>
+        </div>
+
+        <section id="incidents-panel" class="card incidents-panel" aria-labelledby="incidents-title" hidden>
+          <h4 id="incidents-title"><svg class="icon" aria-hidden="true"><use href="#ic-bell"></use></svg>Incidencias reportadas por las brigadas</h4>
+          <ul class="incident-list" id="incident-list"></ul>
+        </section>
+
+        <ul class="exec-strip" id="exec-strip" aria-label="Vista ejecutiva"></ul>
+
+        <section class="card" id="ranking-card" aria-labelledby="ranking-title" tabindex="-1">
+          <div class="card-head card-head-row">
+            <div>
+              <h4 id="ranking-title"><svg class="icon" aria-hidden="true"><use href="#ic-sparkles"></use></svg>Ranking de zonas prioritarias</h4>
+              <p class="muted">Puntaje 0–100 = 50 % incidencia + 30 % crecimiento semanal + 20 % ocupación de camas.</p>
+            </div>
+            <div class="field field-inline">
+              <label for="ranking-sort">Ordenar por</label>
+              <select id="ranking-sort">
+                <option value="score">Prioridad</option>
+                <option value="cases">Casos</option>
+                <option value="occupancy">Ocupación de camas</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-scroll"><table class="data-table responsive-table" id="ranking-table"><caption class="sr-only">Ranking de zonas prioritarias</caption></table></div>
+        </section>
+
+        <div class="grid-2">
+          <section class="card" id="beds-card" aria-labelledby="beds-title" tabindex="-1">
+            <div class="card-head">
+              <h4 id="beds-title"><svg class="icon" aria-hidden="true"><use href="#ic-bed-double"></use></svg>Camas por establecimiento</h4>
+              <p class="muted">Se marca «Saturación» desde 85 % de ocupación.</p>
+            </div>
+            <div class="table-scroll"><table class="data-table responsive-table" id="beds-table"><caption class="sr-only">Camas por establecimiento</caption></table></div>
+          </section>
+
+          <section class="card" aria-labelledby="stock-title">
+            <div class="card-head">
+              <h4 id="stock-title"><svg class="icon" aria-hidden="true"><use href="#ic-pill"></use></svg>Stock de insumos críticos</h4>
+              <p class="muted">Almacén regional. Se marca «Stock crítico» por debajo del mínimo.</p>
+            </div>
+            <ul class="stock-list" id="stock-list"></ul>
+            <form class="form-block" id="resource-form" novalidate aria-labelledby="resource-title">
+              <h5 id="resource-title">Asignar insumos a una zona</h5>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="r-zone">Zona <span class="req" aria-hidden="true">*</span></label>
+                  <select id="r-zone" required aria-describedby="r-zone-err"></select>
+                  <p class="field-error" id="r-zone-err"></p>
+                </div>
+                <div class="field">
+                  <label for="r-item">Insumo <span class="req" aria-hidden="true">*</span></label>
+                  <select id="r-item" required aria-describedby="r-item-err"></select>
+                  <p class="field-error" id="r-item-err"></p>
+                </div>
+                <div class="field">
+                  <label for="r-qty">Cantidad <span class="req" aria-hidden="true">*</span></label>
+                  <input id="r-qty" type="number" min="1" step="1" inputmode="numeric" required aria-describedby="r-qty-err">
+                  <p class="field-error" id="r-qty-err"></p>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary"><svg class="icon" aria-hidden="true"><use href="#ic-package"></use></svg>Asignar insumos</button>
+              <div class="form-status" id="resource-status" role="status" aria-live="polite"></div>
+            </form>
+          </section>
+        </div>
+
+        <div class="grid-2">
+          <section class="card" aria-labelledby="assign-title">
+            <div class="card-head">
+              <h4 id="assign-title"><svg class="icon" aria-hidden="true"><use href="#ic-users"></use></svg>Asignar brigada a una zona</h4>
+              <p class="muted">Solo se listan brigadas disponibles. La alerta llega a la app de la brigada.</p>
+            </div>
+            <form class="form-block" id="brigade-form" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="b-zone">Zona <span class="req" aria-hidden="true">*</span></label>
+                  <select id="b-zone" required aria-describedby="b-zone-err"></select>
+                  <p class="field-error" id="b-zone-err"></p>
+                </div>
+                <div class="field">
+                  <label for="b-brigade">Brigada <span class="req" aria-hidden="true">*</span></label>
+                  <select id="b-brigade" required aria-describedby="b-brigade-err"></select>
+                  <p class="field-error" id="b-brigade-err"></p>
+                </div>
+              </div>
+              <fieldset class="field">
+                <legend>Prioridad <span class="req" aria-hidden="true">*</span></legend>
+                <div class="radio-row">
+                  <label class="radio"><input type="radio" name="b-priority" value="urgente"> Urgente</label>
+                  <label class="radio"><input type="radio" name="b-priority" value="alta" checked> Alta</label>
+                  <label class="radio"><input type="radio" name="b-priority" value="normal"> Normal</label>
+                </div>
+              </fieldset>
+              <div class="field">
+                <label for="b-action">Acción requerida <span class="req" aria-hidden="true">*</span></label>
+                <select id="b-action" required aria-describedby="b-action-err">
+                  <option value="">Selecciona una acción</option>
+                  <option>Control larvario casa por casa</option>
+                  <option>Búsqueda y eliminación de criaderos</option>
+                  <option>Nebulización espacial</option>
+                  <option>Inspección de seguimiento</option>
+                </select>
+                <p class="field-error" id="b-action-err"></p>
+              </div>
+              <p class="muted small">Los campos marcados con * son obligatorios.</p>
+              <button type="submit" class="btn btn-primary"><svg class="icon" aria-hidden="true"><use href="#ic-navigation"></use></svg>Asignar brigada</button>
+              <div class="form-status" id="brigade-status" role="status" aria-live="polite"></div>
+            </form>
+          </section>
+
+          <section class="card" aria-labelledby="msg-title">
+            <div class="card-head">
+              <h4 id="msg-title"><svg class="icon" aria-hidden="true"><use href="#ic-message-square"></use></svg>Mensajes a brigadas</h4>
+              <p class="muted">Indicaciones registradas con fecha y hora.</p>
+            </div>
+            <form class="form-block" id="message-form" novalidate>
+              <div class="field">
+                <label for="m-to">Destinatario <span class="req" aria-hidden="true">*</span></label>
+                <select id="m-to" required></select>
+              </div>
+              <div class="field">
+                <label for="m-text">Mensaje <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="m-text" rows="3" maxlength="400" aria-describedby="m-text-err"></textarea>
+                <p class="field-error" id="m-text-err"></p>
+              </div>
+              <button type="submit" class="btn btn-primary"><svg class="icon" aria-hidden="true"><use href="#ic-send"></use></svg>Enviar</button>
+              <div class="form-status" id="message-status" role="status" aria-live="polite"></div>
+            </form>
+            <h5 class="list-title">Historial</h5>
+            <ul class="message-list" id="message-history"></ul>
+          </section>
+        </div>
+
+        <section class="card" id="interventions-card" aria-labelledby="int-title" tabindex="-1">
+          <div class="card-head card-head-row">
+            <div>
+              <h4 id="int-title"><svg class="icon" aria-hidden="true"><use href="#ic-clipboard-check"></use></svg>Seguimiento de intervenciones</h4>
+              <p class="muted">Estado actualizado por las brigadas desde la app de campo.</p>
+            </div>
+            <div class="field field-inline">
+              <label for="int-filter">Estado</label>
+              <select id="int-filter">
+                <option value="todas">Todos</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="en-curso">En curso</option>
+                <option value="completada">Completada</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-scroll"><table class="data-table responsive-table" id="int-table"><caption class="sr-only">Intervenciones</caption></table></div>
+        </section>
+      </div>
+
+      <!-- ================= PANEL BRIGADA ================= -->
+      <div role="tabpanel" id="panel-brigada" aria-labelledby="tab-brigada" class="tabpanel" hidden>
+        <div class="field-app" id="field-app">
+          <div class="app-header">
+            <div>
+              <p class="app-kicker">App de campo · simulación</p>
+              <h3 class="app-title">Brigada 03 · Lucía Méndez</h3>
+            </div>
+            <div class="app-toggles">
+              <label class="switch">
+                <input type="checkbox" id="toggle-offline" role="switch">
+                <span class="switch-ui" aria-hidden="true"></span>
+                <span>Simular sin conexión</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" id="toggle-legibility" role="switch">
+                <span class="switch-ui" aria-hidden="true"></span>
+                <span>Alta legibilidad</span>
+              </label>
+            </div>
+          </div>
+          <div class="conn-banner" id="conn-banner" role="status" aria-live="polite"></div>
+
+          <div class="app-tabs" role="tablist" aria-label="Secciones de la app de campo">
+            <button role="tab" id="ftab-alertas" aria-controls="fpanel-alertas" aria-selected="true">
+              <svg class="icon" aria-hidden="true"><use href="#ic-bell"></use></svg>Alertas</button>
+            <button role="tab" id="ftab-registro" aria-controls="fpanel-registro" aria-selected="false" tabindex="-1">
+              <svg class="icon" aria-hidden="true"><use href="#ic-clipboard-list"></use></svg>Registro</button>
+            <button role="tab" id="ftab-incidencias" aria-controls="fpanel-incidencias" aria-selected="false" tabindex="-1">
+              <svg class="icon" aria-hidden="true"><use href="#ic-triangle-alert"></use></svg>Incidencias</button>
+            <button role="tab" id="ftab-mensajes" aria-controls="fpanel-mensajes" aria-selected="false" tabindex="-1">
+              <svg class="icon" aria-hidden="true"><use href="#ic-message-square"></use></svg>Mensajes</button>
+          </div>
+
+          <div role="tabpanel" id="fpanel-alertas" aria-labelledby="ftab-alertas" class="ftabpanel">
+            <h4 class="sr-only">Alertas asignadas</h4>
+            <ul class="field-alerts" id="field-alerts"></ul>
+          </div>
+
+          <div role="tabpanel" id="fpanel-registro" aria-labelledby="ftab-registro" class="ftabpanel" hidden>
+            <h4>Registro de inspección domiciliaria</h4>
+            <form id="inspection-form" class="form-block" novalidate>
+              <div class="field">
+                <label for="i-zone">Zona <span class="req" aria-hidden="true">*</span></label>
+                <select id="i-zone" aria-describedby="i-zone-err"></select>
+                <p class="field-error" id="i-zone-err"></p>
+              </div>
+              <div class="field">
+                <label for="i-house">Código de vivienda <span class="req" aria-hidden="true">*</span></label>
+                <input id="i-house" type="text" autocomplete="off" placeholder="Ej.: MZ-C-12" aria-describedby="i-house-err">
+                <p class="field-error" id="i-house-err"></p>
+              </div>
+              <div class="field">
+                <label for="i-result">Resultado de la inspección <span class="req" aria-hidden="true">*</span></label>
+                <select id="i-result" aria-describedby="i-result-err">
+                  <option value="">Selecciona un resultado</option>
+                  <option>Sin criaderos</option>
+                  <option>Criaderos positivos encontrados</option>
+                  <option>Vivienda cerrada</option>
+                  <option>Vivienda renuente</option>
+                </select>
+                <p class="field-error" id="i-result-err"></p>
+              </div>
+              <div class="field">
+                <label for="i-containers">Recipientes inspeccionados</label>
+                <input id="i-containers" type="number" min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <fieldset class="field">
+                <legend>Acciones realizadas</legend>
+                <div class="check-col">
+                  <label class="check"><input type="checkbox" name="i-actions" value="Eliminación de criaderos"> Eliminación de criaderos</label>
+                  <label class="check"><input type="checkbox" name="i-actions" value="Aplicación de larvicida"> Aplicación de larvicida</label>
+                  <label class="check"><input type="checkbox" name="i-actions" value="Educación sanitaria"> Educación sanitaria</label>
+                </div>
+              </fieldset>
+              <button type="submit" class="btn btn-primary btn-block"><svg class="icon" aria-hidden="true"><use href="#ic-check"></use></svg>Guardar inspección</button>
+              <div class="form-status" id="inspection-status" role="status" aria-live="polite"></div>
+            </form>
+            <p class="muted small" id="pending-count"></p>
+          </div>
+
+          <div role="tabpanel" id="fpanel-incidencias" aria-labelledby="ftab-incidencias" class="ftabpanel" hidden>
+            <h4>Reportar una incidencia</h4>
+            <form id="incident-form" class="form-block" novalidate>
+              <fieldset class="field" aria-describedby="inc-type-err">
+                <legend>Tipo de incidencia <span class="req" aria-hidden="true">*</span></legend>
+                <div class="check-col">
+                  <label class="radio"><input type="radio" name="inc-type" value="Acceso restringido"> Acceso restringido</label>
+                  <label class="radio"><input type="radio" name="inc-type" value="Falta de insumos"> Falta de insumos</label>
+                  <label class="radio"><input type="radio" name="inc-type" value="Riesgo de seguridad"> Riesgo de seguridad</label>
+                  <label class="radio"><input type="radio" name="inc-type" value="Otro"> Otro</label>
+                </div>
+                <p class="field-error" id="inc-type-err"></p>
+              </fieldset>
+              <div class="field">
+                <label for="inc-zone">Zona <span class="req" aria-hidden="true">*</span></label>
+                <select id="inc-zone"></select>
+              </div>
+              <div class="field">
+                <label for="inc-desc">Descripción <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="inc-desc" rows="3" maxlength="300" aria-describedby="inc-desc-hint inc-desc-err"></textarea>
+                <p class="hint" id="inc-desc-hint">Mínimo 10 caracteres. No incluyas nombres ni documentos de pacientes.</p>
+                <p class="field-error" id="inc-desc-err"></p>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block"><svg class="icon" aria-hidden="true"><use href="#ic-send"></use></svg>Enviar incidencia</button>
+              <div class="form-status" id="incident-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <div role="tabpanel" id="fpanel-mensajes" aria-labelledby="ftab-mensajes" class="ftabpanel" hidden>
+            <h4>Mensajes del coordinador</h4>
+            <ul class="message-list" id="field-inbox"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HU-48 · Contacto -->
+  <section id="contacto" class="section" aria-labelledby="contacto-title" tabindex="-1">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow">Solicitar información</p>
+        <h2 id="contacto-title">Agenda una demostración para tu equipo</h2>
+        <p>Déjanos tus datos y te contactaremos en un máximo de 2 días hábiles para mostrar EpiNexo con los datos de tu región.</p>
+        <ul class="contact-points">
+          <li><svg class="icon" aria-hidden="true"><use href="#ic-clock"></use></svg>Demostración de 30 minutos</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#ic-users"></use></svg>Para analistas, coordinadores y brigadas</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#ic-shield-check"></use></svg>No pedimos datos de pacientes</li>
+        </ul>
+      </div>
+      <form id="contact-form" class="card form-block" novalidate aria-labelledby="contacto-title">
+        <div id="contact-summary" class="form-summary" role="alert" tabindex="-1" hidden></div>
+        <div class="field">
+          <label for="c-name">Nombre completo <span class="req" aria-hidden="true">*</span></label>
+          <input id="c-name" name="name" type="text" autocomplete="name" required aria-describedby="c-name-err">
+          <p class="field-error" id="c-name-err"></p>
+        </div>
+        <div class="field">
+          <label for="c-email">Correo institucional <span class="req" aria-hidden="true">*</span></label>
+          <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-err">
+          <p class="field-error" id="c-email-err"></p>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="c-phone">Celular <span class="req" aria-hidden="true">*</span></label>
+            <input id="c-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" required aria-describedby="c-phone-hint c-phone-err">
+            <p class="hint" id="c-phone-hint">9 dígitos, empieza con 9.</p>
+            <p class="field-error" id="c-phone-err"></p>
+          </div>
+          <div class="field">
+            <label for="c-region">Región <span class="req" aria-hidden="true">*</span></label>
+            <select id="c-region" name="region" required aria-describedby="c-region-err"></select>
+            <p class="field-error" id="c-region-err"></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-role">Perfil</label>
+          <select id="c-role" name="role">
+            <option value="">Prefiero no indicarlo</option>
+            <option>Analista epidemiológico</option>
+            <option>Coordinador de la respuesta</option>
+            <option>Brigada de campo</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="c-msg">Mensaje <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="c-msg" name="message" rows="4" maxlength="600" required aria-describedby="c-msg-err"></textarea>
+          <p class="field-error" id="c-msg-err"></p>
+        </div>
+        <p class="muted small">Los campos marcados con * son obligatorios.</p>
+        <button type="submit" class="btn btn-primary btn-block"><svg class="icon" aria-hidden="true"><use href="#ic-send"></use></svg>Enviar solicitud</button>
+        <div class="form-status" id="contact-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- HU-12 · Ficha de zona -->
+<dialog id="zone-dialog" class="zone-dialog" aria-labelledby="zone-dialog-title">
+  <div class="dialog-head">
+    <h3 id="zone-dialog-title">Zona</h3>
+    <button type="button" class="btn btn-text icon-only" id="zone-dialog-close" aria-label="Cerrar ficha">
+      <svg class="icon" aria-hidden="true"><use href="#ic-x"></use></svg></button>
+  </div>
+  <div id="zone-dialog-body"></div>
+  <div class="dialog-foot"><button type="button" class="btn btn-secondary" id="zone-dialog-close2">Cerrar</button></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="brand brand-footer"><img src="assets/img/logo.svg" alt="" width="28" height="28"><span>EpiNexo</span></div>
+    <p>Proyecto académico del curso HCI for UX Design (1ASI0784) · UPC · 2026-20. Los datos de la demo son ficticios.</p>
+    <p><a href="#inicio">Volver al inicio</a></p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
